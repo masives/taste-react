@@ -3,37 +3,23 @@ import React from 'react';
 // tak możemy importować style
 import './App.css';
 
-const message = 'Czekolada jest super!';
-const message1 = 'Programowanie jest fajne';
-const message2 = 'A ciastka smaczne';
-
 // klasa App (nazwa własna) dziedziczy od klasy Komponent, dzięki czemu mamy dostęp m.in. do funkcji render
 class App extends React.Component {
+  state = {
+    counter: 10,
+  };
   render() {
+    console.log(this.state.counter);
     return (
       <div className="App">
-        <div>
-          <h1>Uczę się react</h1>
-          <p>Powoli zaczyna to wchodzić</p>
-          <b>Ale zaraz będzie grubo</b>
-        </div>
+        <p>Obecny stan licznika to: {this.state.counter}</p>
         <button
           onClick={() => {
-            console.log('siemka');
+            console.log('Dodaję 1');
           }}
         >
-          Cześć
+          Dodaj 1
         </button>
-        <button
-          onClick={() => {
-            console.log('bajbaj');
-          }}
-        >
-          Żegnaj
-        </button>
-        <p>{message}</p>
-        <p>{message1}</p>
-        <p>{message2}</p>
       </div>
     );
   }
