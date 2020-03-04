@@ -8,14 +8,11 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        Hello world
-        <button
-          onClick={() => {
-            console.log('siemka');
-          }}
-        >
-          kliknij mnie
-        </button>
+        <div>
+          <h1>Uczę się react</h1>
+          <p>Powoli zaczyna to wchodzić</p>
+          <b>Ale zaraz będzie grubo</b>
+        </div>
       </div>
     );
   }
