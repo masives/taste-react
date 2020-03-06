@@ -4,12 +4,14 @@ import React from 'react';
 import './App.css';
 
 import CounterButton from './components/CounterButton';
+import User from './components/User';
 
 class App extends React.Component {
   render() {
     return (
       <div className="App">
         <CounterButton />
+        <User />
       </div>
     );
   }
