@@ -5,7 +5,7 @@ class Searchbar extends React.Component {
     name: '',
   };
 
-  handleChange = (event) => {
+  handleNameChange = (event) => {
     this.setState({ name: event.target.value });
   };
 
@@ -14,7 +14,7 @@ class Searchbar extends React.Component {
     return (
       <label>
         Imię
-        <input type="text" onChange={this.handleChange} value={this.state.name} />
+        <input type="text" onChange={this.handleNameChange} value={this.state.name} />
       </label>
     );
   }
