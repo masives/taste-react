@@ -2,7 +2,12 @@ import React from 'react';
 
 class User extends React.Component {
   render() {
-    return <div>Józef Piecyk</div>;
+    const { name, surname } = this.props;
+    return (
+      <div>
+        {name} {surname}
+      </div>
+    );
   }
 }
 

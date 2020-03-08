@@ -11,7 +11,9 @@ class App extends React.Component {
     return (
       <div className="App">
         <CounterButton />
-        <User />
+        <User name="Józef" surname="Piecyk" />
+        <User name="Emilia" surname="Piecyk" />
+        <User name="Masala" surname="Piecyk" />
       </div>
     );
   }
