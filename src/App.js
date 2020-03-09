@@ -7,14 +7,20 @@ import './App.css';
 import User from './components/User';
 import Searchbar from './components/Searchbar';
 
+const users = [
+  { name: 'Józef', surname: 'Piecyk' },
+  { name: 'Emilia', surname: 'Piecyk' },
+  { name: 'Masala', surname: 'Piecyk' },
+];
+
 class App extends React.Component {
   render() {
     return (
       <div className="App">
         <Searchbar />
-        <User name="Józef" surname="Piecyk" />
-        <User name="Emilia" surname="Piecyk" />
-        <User name="Masala" surname="Piecyk" />
+        {users.map((user) => {
+          return <User name={user.name} surname={user.surname} />;
+        })}
       </div>
     );
   }
