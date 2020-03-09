@@ -18,9 +18,11 @@ class App extends React.Component {
     return (
       <div className="App">
         <Searchbar />
-        {users.map((user) => {
-          return <User name={user.name} surname={user.surname} />;
-        })}
+        {users
+          .filter((user) => user.name.includes('Jó'))
+          .map((user) => {
+            return <User name={user.name} surname={user.surname} />;
+          })}
       </div>
     );
   }
