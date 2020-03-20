@@ -23,10 +23,13 @@ class UsersList extends React.Component {
   };
 
   render() {
+    const { loading, users } = this.state;
     const { name, surname } = this.props;
-    return (
+    return loading ? (
+      <div>Ładuje się...</div>
+    ) : (
       <div>
-        {this.state.users
+        {users
           .filter((user) => user.first_name.includes(name))
           .filter((user) => user.last_name.includes(surname))
           .map((user) => {
