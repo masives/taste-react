@@ -48,7 +48,6 @@ class App extends React.Component {
           surname={this.state.surname}
           handleSurnameChange={this.handleSurnameChange}
         />
-        <h1>Stan ładowania: {this.state.loading.toString()}</h1>
         {this.state.users
           .filter((user) => user.first_name.includes(this.state.name))
           .filter((user) => user.last_name.includes(this.state.surname))
