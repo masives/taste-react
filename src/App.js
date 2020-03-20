@@ -7,17 +7,12 @@ import './App.css';
 import User from './components/User';
 import Searchbar from './components/Searchbar';
 
-const users = [
-  { name: 'Józef', surname: 'Piecyk' },
-  { name: 'Emilia', surname: 'Piecyk' },
-  { name: 'Masala', surname: 'Bibsin' },
-];
-
 class App extends React.Component {
   state = {
     name: '',
     surname: '',
     users: [],
+    loading: false,
   };
 
   handleNameChange = (event) => {
@@ -30,16 +25,21 @@ class App extends React.Component {
 
   componentDidMount = () => {
     //  zaciągnij dane z api
+    this.setState({ loading: true });
     fetch('https://kuznia-kodu.pl/api/users')
       // przerób odpowiedź na json
       .then((data) => data.json())
       .then((data) => {
         // wyświetl dane
         this.setState({ users: data });
+      })
+      .finally(() => {
+        this.setState({ loading: false });
       });
   };
 
   render() {
+    console.log({ loading: this.state.loading });
     return (
       <div className="App">
         <Searchbar
@@ -48,6 +48,7 @@ class App extends React.Component {
           surname={this.state.surname}
           handleSurnameChange={this.handleSurnameChange}
         />
+        <h1>Stan ładowania: {this.state.loading.toString()}</h1>
         {this.state.users
           .filter((user) => user.first_name.includes(this.state.name))
           .filter((user) => user.last_name.includes(this.state.surname))
