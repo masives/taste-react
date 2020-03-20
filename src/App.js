@@ -17,6 +17,7 @@ class App extends React.Component {
   state = {
     name: '',
     surname: '',
+    users: [],
   };
 
   handleNameChange = (event) => {
@@ -25,6 +26,17 @@ class App extends React.Component {
 
   handleSurnameChange = (event) => {
     this.setState({ surname: event.target.value });
+  };
+
+  componentDidMount = () => {
+    //  zaciągnij dane z api
+    fetch('https://kuznia-kodu.pl/api/users')
+      // przerób odpowiedź na json
+      .then((data) => data.json())
+      .then((data) => {
+        // wyświetl dane
+        this.setState({ users: data });
+      });
   };
 
   render() {
@@ -36,11 +48,11 @@ class App extends React.Component {
           surname={this.state.surname}
           handleSurnameChange={this.handleSurnameChange}
         />
-        {users
-          .filter((user) => user.name.includes(this.state.name))
-          .filter((user) => user.surname.includes(this.state.surname))
+        {this.state.users
+          .filter((user) => user.first_name.includes(this.state.name))
+          .filter((user) => user.last_name.includes(this.state.surname))
           .map((user) => {
-            return <User name={user.name} surname={user.surname} />;
+            return <User key={user.id} name={user.first_name} surname={user.last_name} />;
           })}
       </div>
     );
