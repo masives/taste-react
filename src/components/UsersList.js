@@ -1,5 +1,6 @@
 import React from 'react';
 import User from './User';
+import Searchbar from './Searchbar';
 
 class UsersList extends React.Component {
   state = {
@@ -7,6 +8,16 @@ class UsersList extends React.Component {
     loading: false,
     pagesCount: 0,
     currentPage: 0,
+    name: '',
+    surname: '',
+  };
+
+  handleNameChange = (event) => {
+    this.setState({ name: event.target.value });
+  };
+
+  handleSurnameChange = (event) => {
+    this.setState({ surname: event.target.value });
   };
 
   handleFetchUsers = () => {
@@ -37,12 +48,17 @@ class UsersList extends React.Component {
   }
 
   render() {
-    const { loading, users } = this.state;
-    const { name, surname } = this.props;
+    const { loading, users, name, surname } = this.state;
     return loading ? (
       <div>Ładuje się...</div>
     ) : (
       <div>
+        <Searchbar
+          name={this.state.name}
+          handleNameChange={this.handleNameChange}
+          surname={this.state.surname}
+          handleSurnameChange={this.handleSurnameChange}
+        />
         {users
           .filter((user) => user.first_name.includes(name))
           .filter((user) => user.last_name.includes(surname))
@@ -51,6 +67,14 @@ class UsersList extends React.Component {
           })}
         <div>
           <p>Obecna strona: {this.state.currentPage}</p>
+          <button
+            onClick={() => {
+              this.setState({ currentPage: this.state.currentPage - 1 });
+            }}
+            disabled={this.state.currentPage === 0}
+          >
+            {'<'} Poprzednia strona
+          </button>
           <button
             onClick={() => {
               this.setState({ currentPage: this.state.currentPage + 1 });
