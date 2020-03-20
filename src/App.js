@@ -21,7 +21,7 @@ class UsersList extends React.Component {
       .then((data) => data.json())
       .then((data) => {
         // wyświetl dane
-        this.setState({ users: data });
+        this.setState({ users: data.results });
       })
       .finally(() => {
         this.setState({ loading: false });
