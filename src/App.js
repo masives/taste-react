@@ -7,20 +7,10 @@ import './App.css';
 import User from './components/User';
 import Searchbar from './components/Searchbar';
 
-class App extends React.Component {
+class UsersList extends React.Component {
   state = {
-    name: '',
-    surname: '',
     users: [],
     loading: false,
-  };
-
-  handleNameChange = (event) => {
-    this.setState({ name: event.target.value });
-  };
-
-  handleSurnameChange = (event) => {
-    this.setState({ surname: event.target.value });
   };
 
   componentDidMount = () => {
@@ -39,7 +29,36 @@ class App extends React.Component {
   };
 
   render() {
-    console.log({ loading: this.state.loading });
+    const { name, surname } = this.props;
+    return (
+      <div>
+        {this.state.users
+          .filter((user) => user.first_name.includes(name))
+          .filter((user) => user.last_name.includes(surname))
+          .map((user) => {
+            return <User key={user.id} name={user.first_name} surname={user.last_name} />;
+          })}
+      </div>
+    );
+  }
+}
+
+class App extends React.Component {
+  state = {
+    name: '',
+    surname: '',
+  };
+
+  handleNameChange = (event) => {
+    this.setState({ name: event.target.value });
+  };
+
+  handleSurnameChange = (event) => {
+    this.setState({ surname: event.target.value });
+  };
+
+  render() {
+    const { name, surname } = this.state;
     return (
       <div className="App">
         <Searchbar
@@ -48,12 +67,7 @@ class App extends React.Component {
           surname={this.state.surname}
           handleSurnameChange={this.handleSurnameChange}
         />
-        {this.state.users
-          .filter((user) => user.first_name.includes(this.state.name))
-          .filter((user) => user.last_name.includes(this.state.surname))
-          .map((user) => {
-            return <User key={user.id} name={user.first_name} surname={user.last_name} />;
-          })}
+        <UsersList name={name} surname={surname} />
       </div>
     );
   }
