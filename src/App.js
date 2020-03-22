@@ -2,6 +2,8 @@
 import React from 'react';
 // tak możemy importować style
 import './App.css';
+// 11:03
+const message = 'Czekolada jest super!';
 
 // klasa App (nazwa własna) dziedziczy od klasy Komponent, dzięki czemu mamy dostęp m.in. do funkcji render
 class App extends React.Component {
@@ -29,12 +31,11 @@ class App extends React.Component {
         >
           Nie klikaj we mnie
         </button>
-        {/* bajbaj */}
+
+        <p>{message}</p>
       </div>
     );
   }
 }
 
 export default App;
-
-// 10:52
