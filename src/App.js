@@ -13,10 +13,13 @@ const users = [
   { name: 'Adam', surname: 'Brodo' },
 ];
 
+// 15:07
+
 class App extends React.Component {
   state = {
     name: '',
     surname: '',
+    users: [],
   };
 
   handleNameChange = (event) => {
@@ -25,6 +28,19 @@ class App extends React.Component {
 
   handleSurnameChange = (event) => {
     this.setState({ surname: event.target.value });
+  };
+
+  componentDidMount = () => {
+    console.log('zamontowałem się');
+    fetch('https://kuznia-kodu.pl/api/users')
+      // przerób odpowiedź na json
+      .then((data) => data.json())
+      .then((data) => {
+        // wyświetl dane
+        console.log({ data });
+        const users = data.results;
+        // zapisać do stanu users
+      });
   };
 
   render() {
@@ -42,7 +58,6 @@ class App extends React.Component {
             return user.name.includes(this.state.name) && user.surname.includes(this.state.surname);
           })
           .map((user, index) => {
-            console.log(user);
             return <User key={index} name={user.name} surname={user.surname} />;
           })}
       </div>
