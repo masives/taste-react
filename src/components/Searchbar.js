@@ -1,15 +1,17 @@
 import React from 'react';
 
-// 13:20
-// 13:30
 class Searchbar extends React.Component {
   state = {
     name: '',
+    surname: '',
   };
 
   handleNameChange = (event) => {
-    console.log(event.target.value);
     this.setState({ name: event.target.value });
+  };
+
+  handleSurnameChange = (event) => {
+    this.setState({ surname: event.target.value });
   };
 
   render() {
@@ -19,7 +21,12 @@ class Searchbar extends React.Component {
           Imię
           <input type="text" value={this.state.name} onChange={this.handleNameChange} />
         </label>
+        <label>
+          Nazwisko
+          <input type="text" value={this.state.surname} onChange={this.handleSurnameChange} />
+        </label>
         <div>Obecny name to: {this.state.name}</div>
+        <div>Obecny surname to : {this.state.surname}</div>
       </div>
     );
   }
