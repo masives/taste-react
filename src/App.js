@@ -13,26 +13,22 @@ class App extends React.Component {
     this.setState({ counter: this.state.counter + 1 });
   };
 
+  decrementCounter = () => {
+    this.setState({ counter: this.state.counter - 1 });
+  };
+
+  doubleCounter = () => {
+    this.setState({ counter: this.state.counter * 2 });
+  };
+
   render() {
     console.log(this.state.counter);
     return (
       <div className="App">
         <p>Obecny stan licznika to: {this.state.counter}</p>
         <button onClick={this.incrementCounter}>Dodaj 1</button>
-        <button
-          onClick={() => {
-            this.setState({ counter: this.state.counter - 1 });
-          }}
-        >
-          Odejmij 1
-        </button>
-        <button
-          onClick={() => {
-            this.setState({ counter: this.state.counter * 2 });
-          }}
-        >
-          Podwój
-        </button>
+        <button onClick={this.decrementCounter}>Odejmij 1</button>
+        <button onClick={this.doubleCounter}>Podwój</button>
       </div>
     );
   }
