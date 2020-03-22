@@ -22,7 +22,9 @@ class UsersList extends React.Component {
   };
 
   render() {
-    return (
+    return this.state.loading ? (
+      <div>Ładuję listę użytkowników</div>
+    ) : (
       <div>
         {this.state.users
           .filter((user) => {
