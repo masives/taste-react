@@ -26,12 +26,16 @@ class UsersList extends React.Component {
   };
 
   render() {
-    console.log(this.state);
+    console.log(this.props);
     return (
       <div>
-        {this.state.users.map((user) => {
-          return <User name={user.first_name} surname={user.last_name} />;
-        })}
+        {this.state.users
+          .filter((user) => {
+            return user.first_name.includes(this.props.name) && user.last_name.includes(this.props.surname);
+          })
+          .map((user) => {
+            return <User key={user.id} name={user.first_name} surname={user.last_name} />;
+          })}
       </div>
     );
   }
@@ -41,8 +45,6 @@ class App extends React.Component {
   state = {
     name: '',
     surname: '',
-    users: [],
-    loading: false,
   };
 
   handleNameChange = (event) => {
@@ -52,21 +54,6 @@ class App extends React.Component {
   handleSurnameChange = (event) => {
     this.setState({ surname: event.target.value });
   };
-  // 15:26
-  componentDidMount = () => {
-    this.setState({ loading: true });
-    fetch('https://kuznia-kodu.pl/api/users')
-      // przerób odpowiedź na json
-      .then((data) => data.json())
-      .then((data) => {
-        const users = data.results;
-        this.setState({ users: users });
-      })
-      .finally(() => {
-        this.setState({ loading: false });
-      });
-  };
-
   render() {
     return (
       <div className="App">
@@ -76,15 +63,7 @@ class App extends React.Component {
           handleNameChange={this.handleNameChange}
           handleSurnameChange={this.handleSurnameChange}
         />
-        <UsersList />
-
-        {/* {this.state.users
-          .filter((user) => {
-            return user.first_name.includes(this.state.name) && user.last_name.includes(this.state.surname);
-          })
-          .map((user, index) => {
-            return <User key={index} name={user.first_name} surname={user.last_name} />;
-          })} */}
+        <UsersList name={this.state.name} surname={this.state.surname} />
       </div>
     );
   }
