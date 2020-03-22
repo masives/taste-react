@@ -6,15 +6,6 @@ import CounterButtons from './components/CounterButtons';
 import User from './components/User';
 import Searchbar from './components/Searchbar';
 
-const users = [
-  { name: 'Juzek', surname: 'Piecyk' },
-  { name: 'Emilia', surname: 'Piecyk' },
-  { name: 'Masala', surname: 'Piesek' },
-  { name: 'Adam', surname: 'Brodo' },
-];
-
-// 15:07
-
 class App extends React.Component {
   state = {
     name: '',
@@ -36,10 +27,8 @@ class App extends React.Component {
       // przerób odpowiedź na json
       .then((data) => data.json())
       .then((data) => {
-        // wyświetl dane
-        console.log({ data });
         const users = data.results;
-        // zapisać do stanu users
+        this.setState({ users: users });
       });
   };
 
@@ -53,12 +42,12 @@ class App extends React.Component {
           handleSurnameChange={this.handleSurnameChange}
         />
 
-        {users
+        {this.state.users
           .filter((user) => {
-            return user.name.includes(this.state.name) && user.surname.includes(this.state.surname);
+            return user.first_name.includes(this.state.name) && user.last_name.includes(this.state.surname);
           })
           .map((user, index) => {
-            return <User key={index} name={user.name} surname={user.surname} />;
+            return <User key={index} name={user.first_name} surname={user.last_name} />;
           })}
       </div>
     );
