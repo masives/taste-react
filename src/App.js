@@ -37,14 +37,15 @@ class App extends React.Component {
         <p>Obecny stan licznika to: {this.state.counter}</p>
         <button
           onClick={() => {
-            console.log('dodaj 1');
+            this.setState({
+              counter: this.state.counter + 1,
+            });
           }}
         >
           Dodaj 1
         </button>
-        {/* przycisk z konsolą */}
+        {/* 11:42 */}
       </div>
-      // 11:20
     );
   }
 }
