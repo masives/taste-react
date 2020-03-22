@@ -22,6 +22,13 @@ class App extends React.Component {
         >
           Kliknij mnie
         </button>
+        <button
+          onClick={() => {
+            console.log('bajbaj');
+          }}
+        >
+          Nie klikaj we mnie
+        </button>
         {/* bajbaj */}
       </div>
     );
