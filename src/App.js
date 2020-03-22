@@ -6,6 +6,12 @@ import CounterButtons from './components/CounterButtons';
 import User from './components/User';
 import Searchbar from './components/Searchbar';
 
+const users = [
+  { name: 'Juzek', surname: 'Piecyk' },
+  { name: 'Emilia', surname: 'Piecyk' },
+  { name: 'Masala', surname: 'Piesek' },
+];
+
 class App extends React.Component {
   render() {
     return (
@@ -16,10 +22,15 @@ class App extends React.Component {
         <User name="Emilia" surname="Piecyk" />
         <User name="Werka" surname="Rodo" />
         <User name="Masala" surname="Piesek" />
+
+        {users.map((user) => {
+          console.log(user);
+          return <p>{user.name}</p>;
+        })}
       </div>
     );
   }
 }
-// 12:55
+// 13:48
 
 export default App;
