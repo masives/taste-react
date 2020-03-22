@@ -4,12 +4,14 @@ import React from 'react';
 import './App.css';
 import CounterButtons from './components/CounterButtons';
 import User from './components/User';
+import Searchbar from './components/Searchbar';
 
 class App extends React.Component {
   render() {
     return (
       <div className="App">
         <CounterButtons />
+        <Searchbar />
         <User name="Józef" surname="Piecyk" />
         <User name="Emilia" surname="Piecyk" />
         <User name="Werka" surname="Rodo" />
