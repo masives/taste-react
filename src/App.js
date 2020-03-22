@@ -38,13 +38,26 @@ class App extends React.Component {
         <button
           onClick={() => {
             this.setState({
-              counter: this.state.counter + 1,
+              counter: this.state.count + 1,
             });
           }}
         >
           Dodaj 1
         </button>
-        {/* 11:42 */}
+        <button
+          onClick={() => {
+            this.setState({ counter: this.state.counter - 1 });
+          }}
+        >
+          Odejmij 1
+        </button>
+        <button
+          onClick={() => {
+            this.setState({ counter: this.state.counter * 2 });
+          }}
+        >
+          Podwój
+        </button>
       </div>
     );
   }
