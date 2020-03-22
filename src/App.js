@@ -18,14 +18,18 @@ class App extends React.Component {
     return (
       <div className="App">
         <Searchbar />
-        {users.map((user) => {
-          console.log(user);
-          return <User name={user.name} surname={user.surname} />;
-        })}
+        {users
+          .filter((user) => {
+            return user.surname.includes('sek');
+          })
+          .map((user) => {
+            console.log(user);
+            return <User name={user.name} surname={user.surname} />;
+          })}
       </div>
     );
   }
 }
-// 13:48
+// 14:02
 
 export default App;
