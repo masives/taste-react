@@ -1,10 +1,13 @@
 import React from 'react';
 import User from './User';
 
+const LIMIT = 20;
+
 class UsersList extends React.Component {
   state = {
     users: [],
     loading: false,
+    pagesCount: 0,
   };
 
   componentDidMount = () => {
@@ -14,7 +17,8 @@ class UsersList extends React.Component {
       .then((data) => data.json())
       .then((data) => {
         const users = data.results;
-        this.setState({ users: users });
+        const pagesCount = Math.ceil(data.count / LIMIT);
+        this.setState({ users: users, pagesCount: pagesCount });
       })
       .finally(() => {
         this.setState({ loading: false });
@@ -33,6 +37,7 @@ class UsersList extends React.Component {
           .map((user) => {
             return <User key={user.id} name={user.first_name} surname={user.last_name} />;
           })}
+        <div>Liczba stron: {this.state.pagesCount}</div>
       </div>
     );
   }
