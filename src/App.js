@@ -8,7 +8,7 @@ const message2 = 'Ciastka są smaczne';
 // klasa App (nazwa własna) dziedziczy od klasy Komponent, dzięki czemu mamy dostęp m.in. do funkcji render
 class App extends React.Component {
   state = {
-    counter: 0,
+    counter: 10,
   };
 
   render() {
@@ -34,7 +34,14 @@ class App extends React.Component {
         <p>{message1}</p>
         <p>{message2}</p>
 
-        <p>{this.state.counter}</p>
+        <p>Obecny stan licznika to: {this.state.counter}</p>
+        <button
+          onClick={() => {
+            console.log('dodaj 1');
+          }}
+        >
+          Dodaj 1
+        </button>
         {/* przycisk z konsolą */}
       </div>
       // 11:20
