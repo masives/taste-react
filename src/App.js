@@ -37,11 +37,9 @@ class App extends React.Component {
           handleSurnameChange={this.handleSurnameChange}
         />
 
-        <div>Obecny name to: {this.state.name}</div>
-        <div>Obecny surname to : {this.state.surname}</div>
         {users
           .filter((user) => {
-            return user.surname.includes('sek');
+            return user.name.includes(this.state.name) && user.surname.includes(this.state.surname);
           })
           .map((user) => {
             console.log(user);
