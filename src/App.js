@@ -10,10 +10,14 @@ class App extends React.Component {
     return (
       <div className="App">
         <CounterButtons />
-        <User />
+        <User name="Józef" />
+        <User name="Emilia" />
+        <User name="Werka" />
+        <User name="Masala" />
       </div>
     );
   }
 }
+// 12:55
 
 export default App;
