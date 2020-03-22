@@ -14,6 +14,15 @@ class App extends React.Component {
           <p>Powoli zaczyna to wchodzić</p>
           <b>Ale zaraz będzie grubo!</b>
         </div>
+
+        <button
+          onClick={() => {
+            console.log('siemka');
+          }}
+        >
+          Kliknij mnie
+        </button>
+        {/* bajbaj */}
       </div>
     );
   }
@@ -21,4 +30,4 @@ class App extends React.Component {
 
 export default App;
 
-// 10:36
+// 10:52
