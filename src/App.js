@@ -14,10 +14,31 @@ const users = [
 ];
 
 class App extends React.Component {
+  state = {
+    name: '',
+    surname: '',
+  };
+
+  handleNameChange = (event) => {
+    this.setState({ name: event.target.value });
+  };
+
+  handleSurnameChange = (event) => {
+    this.setState({ surname: event.target.value });
+  };
+
   render() {
     return (
       <div className="App">
-        <Searchbar />
+        <Searchbar
+          name={this.state.name}
+          surname={this.state.surname}
+          handleNameChange={this.handleNameChange}
+          handleSurnameChange={this.handleSurnameChange}
+        />
+
+        <div>Obecny name to: {this.state.name}</div>
+        <div>Obecny surname to : {this.state.surname}</div>
         {users
           .filter((user) => {
             return user.surname.includes('sek');
@@ -30,6 +51,6 @@ class App extends React.Component {
     );
   }
 }
-// 14:02
+// 14:22
 
 export default App;
