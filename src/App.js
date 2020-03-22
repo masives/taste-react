@@ -41,14 +41,14 @@ class App extends React.Component {
           .filter((user) => {
             return user.name.includes(this.state.name) && user.surname.includes(this.state.surname);
           })
-          .map((user) => {
+          .map((user, index) => {
             console.log(user);
-            return <User name={user.name} surname={user.surname} />;
+            return <User key={index} name={user.name} surname={user.surname} />;
           })}
       </div>
     );
   }
 }
-// 14:22
+// 14:50
 
 export default App;
